@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 
 export default function Trendingcard(props) {
     const [image,setImage] = useState([])
-    useEffect(async ()=>{
-        await fetch(`${props.detail}`)
-        .then(res=>res.json())
-        .then(json=>setImage(json.data.phone_images[0]))
+    useEffect(()=>{
+        async function fetchData(){
+            await fetch(`${props.detail}`)
+            .then(res=>res.json())
+            .then(json=>setImage(json.data.phone_images[0]))
+        }
+        fetchData()
     },[])
   return (
     <div>

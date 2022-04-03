@@ -5,10 +5,13 @@ import { useParams } from 'react-router'
 export default function Mobile() {
   const {name} = useParams()
   const [mobileData,setMobileData] = useState([])
-  useEffect(async ()=>{
-    await fetch(`https://api-mobilespecs.azharimm.site/v2/${name}`)
-    .then(res=>res.json())
-    .then(json=>setMobileData(json.data))
+  useEffect(()=>{
+    async function fetchData(){
+      await fetch(`https://api-mobilespecs.azharimm.site/v2/${name}`)
+      .then(res=>res.json())
+      .then(json=>setMobileData(json.data))
+    }
+    fetchData()
     console.log(mobileData)
   },[])
   return (
@@ -53,7 +56,7 @@ export default function Mobile() {
                   </tr>
                 </tbody>
               </Table>
-              {
+              { (mobileData.specifications)?
                 mobileData.specifications.map((e)=>
                   <div>
                     <p>{e.title}</p>
@@ -70,7 +73,7 @@ export default function Mobile() {
                       </tbody>
                     </Table>
                   </div>
-                )
+                ):null
               }
             </Col>
         </Row>
