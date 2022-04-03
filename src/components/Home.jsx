@@ -5,16 +5,22 @@ import Trendingcard from './Trendingcard'
 export default function Home() {
   const [trending,setTrending] = useState([])
   useEffect(()=>{
-    fetch("https://api-mobilespecs.azharimm.site/v2/top-by-interest")
-    .then(res=>res.json())
-    .then(json=>setTrending(json.data.phones))
+    async function fetchData(){
+      await fetch("https://api-mobilespecs.azharimm.site/v2/top-by-interest")
+      .then(res=>res.json())
+      .then(json=>setTrending(json.data.phones))
+    }
+    fetchData()
   },[])
 
   const [latest,setLatest] = useState([])
   useEffect(() => {
-    fetch("https://api-mobilespecs.azharimm.site/v2/latest")
-    .then(res=>res.json())
-    .then(json=>setLatest(json.data.phones))
+    async function fetchData(){
+      await fetch("https://api-mobilespecs.azharimm.site/v2/latest")
+      .then(res=>res.json())
+      .then(json=>setLatest(json.data.phones))
+    }
+    fetchData()
   }, [])
 
   return (
