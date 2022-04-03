@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Brands from './components/Brands';
 import Offers from './components/Offers';
 import Cartt from './components/Cartt';
+import Mobile from './components/Mobile';
 import { CartFill } from 'react-bootstrap-icons';
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
               <Nav.Link as={Link} to="/offers">Offers</Nav.Link>
               <Nav.Link as={Link} to="/cart" style={{marginTop:"-2px"}}><CartFill/></Nav.Link>
             </Nav>
-            <Nav.Link style={{color:"black"}}>Login</Nav.Link>
-            <Nav.Link style={{color:"black"}}>Signup</Nav.Link>
+            <Nav.Link style={{color:"black",border:"1px solid black",margin:"2px"}}>Login</Nav.Link>
+            <Nav.Link style={{color:"black",border:"1px solid black"}}>Signup</Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -31,6 +32,7 @@ function App() {
         <Route path='/brands' element={<Brands />} />
         <Route path='/offers' element={<Offers />} />
         <Route path='/cart' element={<Cartt />} />
+        <Route path='/mobile/:name' element={<Mobile/>} />
       </Routes>
     </div>
   );
