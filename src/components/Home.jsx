@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div>
         <Container>
-          <h1 style={{textAlign:"left",margin:"20px"}} >Trending Mobiles</h1>
+          <h1 style={{textAlign:"left",margin:"20px"}} >Trending Mobiles:</h1>
           <Row md={4} xs={2} sm={2} lg={6}>
             {
               (trending)?
@@ -28,7 +28,7 @@ export default function Home() {
               :null
             }
           </Row>
-          <h1 style={{textAlign:"left",margin:"20px"}} >Latest Mobiles</h1>
+          <h1 style={{textAlign:"left",margin:"20px"}} >Latest Mobiles:</h1>
           <Row md={4} xs={2} sm={2} lg={6}>
             {
               (latest)?
