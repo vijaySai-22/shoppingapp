@@ -22,10 +22,9 @@ export default function Home() {
     }
     fetchData()
   }, [])
-
   return (
     <div>
-        <Container>
+        <Container style={{backgroundColor:"#f5f5f5"}}>
           <h1 style={{textAlign:"left",margin:"20px"}} >Trending Mobiles:</h1>
           <Row md={4} xs={2} sm={2} lg={6}>
             {
@@ -38,7 +37,7 @@ export default function Home() {
           <Row md={4} xs={2} sm={2} lg={6}>
             {
               (latest)?
-              latest.map((e)=><Latestcard name={e.phone_name} img={e.image} key={Math.random()}/>)
+              latest.map((e)=><Latestcard name={e.phone_name} img={e.image} slug={e.slug} key={Math.random()}/>)
               :null
             }
           </Row>

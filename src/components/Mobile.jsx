@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel, Col, Container, Row, Table } from 'react-bootstrap'
 import { useParams } from 'react-router'
-
+import Buy from './Buy'
+import Price from './Price'
 export default function Mobile() {
   const {name} = useParams()
   const [mobileData,setMobileData] = useState([])
@@ -12,28 +13,47 @@ export default function Mobile() {
       .then(json=>setMobileData(json.data))
     }
     fetchData()
-    console.log(mobileData)
   },[])
   return (
     <div>
-      <Container>
+      <Container style={{backgroundColor:"#f5f5f5"}}>
         <h1>{mobileData.phone_name}</h1>
         <Row>
             <Col md={6}>
               {
                 (mobileData.phone_images)?
-                <Carousel style={{width:"350px",margin:"auto"}}>
+                <Carousel style={{width:"350px",margin:"auto",backgroundColor:"black"}}>
                   {
                     mobileData.phone_images.map((e)=>
                       <Carousel.Item>
-                        <img src={e} style={{width:"300px",height:"300px"}} />
+                        <img src={e} alt="..." style={{width:"300px",height:"300px",padding:"10px",borderRadius:"30px"}} />
                       </Carousel.Item>
                     )
                   }
                 </Carousel>
                 :null
               }
-              <img src={mobileData.thumbnail} style={{width:"300px",height:"300px",padding:"10px",margin:"10px",border:"2px solid black"}}/>
+              <img src={mobileData.thumbnail} alt="..." style={{width:"300px",height:"300px",padding:"10px",margin:"10px",border:"2px solid black"}}/>
+              {
+                (mobileData.specifications)?
+                mobileData.specifications.map((e) => (
+                  <div>
+                    {e.specs.map((x) => {
+                      if (x.key === "Price") return(<Price price={x.val} />)
+                    })}
+                  </div>
+                )):null
+              }
+              {
+                (mobileData.specifications)?
+                mobileData.specifications.map((e) => (
+                  <div>
+                    {e.specs.map((x) => {
+                      if (x.key === "Status") return(<Buy status={x.val}/>)
+                    })}
+                  </div>
+                )):null
+              }
             </Col>
             <Col md={6}>
               <Table striped bordered hover style={{margin:"10px"}}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 export default function Latestcard(props) {
   return (
@@ -9,7 +10,7 @@ export default function Latestcard(props) {
             <Card.Body>
                 <Card.Title>{props.name}</Card.Title>
             </Card.Body>
-            <Button style={{backgroundColor:"#13f060",width:"50%",color:"black",margin:"-20px auto 5px"}}>View</Button>
+            <Button style={{backgroundColor:"#13f060",width:"50%",color:"black",margin:"-20px auto 5px"}} as={Link} to={`/mobile/${props.slug}`}>View</Button>
         </Card>
     </div>
   )

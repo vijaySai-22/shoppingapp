@@ -18,7 +18,7 @@ export default function Trendingcard(props) {
             <Card.Img variant="top" src={imagee} style={{width:"150px",margin:"auto",padding:"10px"}} />
             <Card.Body>
                 <Card.Title> {props.name} </Card.Title>
-                <Button style={{backgroundColor:"#13f060",color:"black",margin:"-5px auto auto"}} as={Link} to={`/mobile/${props.slug}`} >Open</Button>
+                <Button style={{backgroundColor:"#13f060",color:"black",margin:"-5px auto auto"}} as={Link} to={`/mobile/${props.slug}`} >View</Button>
             </Card.Body>
         </Card>
     </div>
