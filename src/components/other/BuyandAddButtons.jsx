@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getAuth } from '@firebase/auth'
-import { addDoc, collection, doc, setDoc,getDoc, getDocFromCache } from '@firebase/firestore'
-import { db } from '../../firebase'
+import { getAuth, onAuthStateChanged } from '@firebase/auth'
+import { doc, setDoc,getDoc } from '@firebase/firestore'
+import { auth, db } from '../../firebase'
 import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 export default function BuyandAddButtons(props) {
@@ -43,19 +43,38 @@ export default function BuyandAddButtons(props) {
             console.log(e)
         }
     }
+    //checking user logged in or not
+    const [userIn,setUserIn] = useState(false)
+    useEffect(()=>{
+        function fetched(){
+            const check=onAuthStateChanged(auth,(user)=>{
+                if (user!=null){
+                    setUserIn(true)
+                }
+                else{
+                    setUserIn(false)
+                }
+            })
+            return check
+        }
+        fetched()
+    },[])
   return (
     <div>
-        {
-            (status)?
-            <div>
-                <Button style={{backgroundColor:"#13f060",color:"black",margin:"10px"}}>Buy Now</Button>
-                {
-                    (exist)?
-                    <Button as={Link} to='/cart' >Go to Cart</Button>:
-                    <Button onClick={cart}>Add to Cart</Button>
-                    
-                }
-            </div>:<h3>Coming Soon</h3>
+        {   (userIn)?
+                (status)?
+                <div>
+                    <Button style={{backgroundColor:"#13f060",color:"black",margin:"10px"}}>Buy Now</Button>
+                    {
+                        (exist)?
+                        <Button as={Link} to='/cart' >Go to Cart</Button>:
+                        <Button onClick={cart}>Add to Cart</Button>
+                        
+                    }
+                </div>:<h3>Coming Soon</h3>
+            :<>
+                <h5><Button as={Link} to='/login'>Login</Button> to Buy </h5>
+            </>
         }
     </div>
   )
