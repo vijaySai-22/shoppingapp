@@ -7,8 +7,31 @@ import Offers from './components/Offers';
 import Cartt from './components/Cartt';
 import Mobile from './components/Mobile';
 import { CartFill } from 'react-bootstrap-icons';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged, signOut } from '@firebase/auth';
+import { auth } from './firebase';
 
 function App() {
+  const [userIn,setUserIn] = useState(false)
+  useEffect(()=>{
+      function fetched(){
+          const check=onAuthStateChanged(auth,(user)=>{
+              if (user!=null){
+                  setUserIn(true)
+              }
+              else{
+                  setUserIn(false)
+              }
+          })
+          return check
+      }
+      fetched()
+  },[])
+  const signout=()=>{
+    signOut(auth)
+  }
   return (
     <div className="App">
       <Navbar sticky="top" expand="lg" style={{fontWeight:"bolder",fontSize:"1.3em",backgroundColor:"#13f060"}}>
@@ -20,10 +43,19 @@ function App() {
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/brands">Brands</Nav.Link>
               <Nav.Link as={Link} to="/offers">Offers</Nav.Link>
-              <Nav.Link as={Link} to="/cart" style={{marginTop:"-2px"}}><CartFill/></Nav.Link>
+              {
+                (userIn)?
+              <Nav.Link as={Link} to="/cart" style={{marginTop:"-2px"}}><CartFill/></Nav.Link>:null
+              }
             </Nav>
-            <Nav.Link style={{color:"black",border:"1px solid black",margin:"2px"}}>Login</Nav.Link>
-            <Nav.Link style={{color:"black",border:"1px solid black"}}>Signup</Nav.Link>
+            {
+              (userIn)?
+              <Nav.Link onClick={signout} style={{color:"black",border:"1px solid black",margin:"2px"}}>Logout</Nav.Link>:
+              <>
+              <Nav.Link as={Link} to="/login" style={{color:"black",border:"1px solid black",margin:"2px"}}>Login</Nav.Link>
+              <Nav.Link as={Link} to="/signup" style={{color:"black",border:"1px solid black",margin:"2px"}}>Signup</Nav.Link>
+              </>
+            }
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -33,6 +65,8 @@ function App() {
         <Route path='/offers' element={<Offers />} />
         <Route path='/cart' element={<Cartt />} />
         <Route path='/mobile/:name' element={<Mobile/>} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
     </div>
   );
