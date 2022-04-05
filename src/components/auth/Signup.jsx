@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged } from '@firebase/auth'
 import { addDoc, collection } from '@firebase/firestore'
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../firebase'
+import { auth, db } from '../../firebase'
 import { Card, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 

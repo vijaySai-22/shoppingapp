@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAuth } from '@firebase/auth'
 import { addDoc, collection, doc, setDoc,getDoc, getDocFromCache } from '@firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../../firebase'
 import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 export default function BuyandAddButtons(props) {

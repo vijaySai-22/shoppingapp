@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs } from "firebase/firestore";
-import Carttcard from './Carttcard'
+import Carttcard from '../cards/Carttcard'
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
-import { auth, db } from '../firebase';
+import { auth, db } from '../../firebase';
 import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 

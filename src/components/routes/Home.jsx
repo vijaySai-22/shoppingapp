@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row } from 'react-bootstrap'
-import Latestcard from './Latestcard'
-import Trendingcard from './Trendingcard'
+import Latestcard from '../cards/Latestcard'
+import Trendingcard from '../cards/Trendingcard'
 export default function Home() {
   const [trending,setTrending] = useState([])
   useEffect(()=>{

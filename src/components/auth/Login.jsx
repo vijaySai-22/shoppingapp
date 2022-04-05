@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
 import { Card, Container, Button } from 'react-bootstrap';
-import Home from './Home';
 import { Link } from 'react-router-dom';
 function Login(props) {
     const emailref = useRef()
