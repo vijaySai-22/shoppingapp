@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel, Col, Container, Row, Table } from 'react-bootstrap'
 import { useParams } from 'react-router'
-import Buy from './Buy'
+import BuyandAddButtons from './BuyandAddButtons'
 import Price from './Price'
 export default function Mobile() {
   const {name} = useParams()
@@ -50,7 +50,7 @@ export default function Mobile() {
                 mobileData.specifications.map((e) => (
                   <div>
                     {e.specs.map((x) => {
-                      if (x.key === "Status") return(<Buy status={x.val} mobileName={name} />)
+                      if (x.key === "Status") return(<BuyandAddButtons status={x.val} mobileName={name} />)
                     })}
                   </div>
                 )):null

@@ -4,7 +4,7 @@ import { addDoc, collection, doc, setDoc,getDoc, getDocFromCache } from '@fireba
 import { db } from '../firebase'
 import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-export default function Buy(props) {
+export default function BuyandAddButtons(props) {
     const s = String(props.status)
     var status = false
     if(s.includes("Available"))
