@@ -14,6 +14,7 @@ export default function Mobile() {
     }
     fetchData()
   },[])
+  
   return (
     <div>
       <Container style={{backgroundColor:"#f5f5f5"}}>
@@ -49,7 +50,7 @@ export default function Mobile() {
                 mobileData.specifications.map((e) => (
                   <div>
                     {e.specs.map((x) => {
-                      if (x.key === "Status") return(<Buy status={x.val}/>)
+                      if (x.key === "Status") return(<Buy status={x.val} mobileName={name} />)
                     })}
                   </div>
                 )):null

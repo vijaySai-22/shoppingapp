@@ -32,6 +32,7 @@ export default function Signup(props) {
         }
         setData({ email:'',password:''})
     }
+    //checking user logged in or not
     const [userIn,setUserIn] = useState(false)
     useEffect(()=>{
         function fetched(){

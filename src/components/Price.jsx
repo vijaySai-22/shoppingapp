@@ -7,7 +7,7 @@ export default function Price(props) {
   if (p1 === "About") {
     price = p.replace("About ", "");
     const pp = price.slice(-3)
-    price=parseFloat(price)
+    price=parseInt(price)
     if(pp==="USD")
       price=price*75.53
     else if(pp==="EUR")
@@ -16,12 +16,12 @@ export default function Price(props) {
   else if(p.includes('$')){
     const pp = p.slice(p.indexOf("$") + 2, p.indexOf("/"));
     const pp2 = pp.replace(",", "");
-    price = parseFloat(pp2*75.53);
+    price = parseInt(pp2*75.53);
   }
   else if(p.includes('€')){
     const pp = p.slice(p.indexOf("$") + 2, p.indexOf("/"));
     const pp2 = pp.replace(",", "");
-    price = parseFloat(pp2*83.09);
+    price = parseInt(pp2*83.09);
   }
   else {
     price="None"
