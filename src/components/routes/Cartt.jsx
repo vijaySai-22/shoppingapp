@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 export default function Cartt() {
   const [id,setId] = useState()
   const [ids,setIds] = useState([])
+  const [removeclicked,setRemoveClicked] = useState(0)
   useEffect(()=>{
     const auth = getAuth();
     const user = auth.currentUser;
@@ -29,9 +30,10 @@ export default function Cartt() {
       })
     }
     gettingData()
-    console.log(ids)
-  },[id])
-
+  },[id,removeclicked])
+  function back(){
+    setRemoveClicked(removeclicked+1)
+  }
   //checking user logged in or not
   const [userIn,setUserIn] = useState(false)
   useEffect(()=>{
@@ -54,7 +56,7 @@ export default function Cartt() {
         (userIn)?
           (ids.length!==0)?
           ids.map((e)=>{
-            return <Carttcard slug={e.id} qty={e.qty} />
+            return <Carttcard slug={e.id} qty={e.qty} back={back} />
           })
           :<h3>No items in Cart</h3>
         :<>

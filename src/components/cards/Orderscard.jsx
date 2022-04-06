@@ -26,6 +26,8 @@ export default function Orderscard(props) {
       },[])
     const cancel=async ()=>{
         await deleteDoc(doc(db, `${id}orders`, `${props.slug}`));
+        alert("Cancelled!")
+        props.back()
     }
   return (
     <div>

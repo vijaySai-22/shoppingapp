@@ -9,6 +9,7 @@ import {Button} from 'react-bootstrap'
 export default function Orders() {
   const [id,setId] = useState()
   const [items,setItems] = useState([])
+  const [cancelClicked,setCancelClicked]= useState(0)
   useEffect(()=>{
     const auth = getAuth();
     const user = auth.currentUser;
@@ -30,8 +31,10 @@ export default function Orders() {
     }
     gettingData()
     console.log(items)
-  },[id])
-
+  },[id,cancelClicked])
+  function back(){
+    setCancelClicked(cancelClicked+1)
+  }
   //checking user logged in or not
   const [userIn,setUserIn] = useState(false)
   useEffect(()=>{
@@ -54,7 +57,7 @@ export default function Orders() {
         (userIn)?
           (items.length!==0)?
           items.map((e)=>{
-            return <Orderscard mobileName={e.itemname} slug={e.itemslugname} />
+            return <Orderscard mobileName={e.itemname} slug={e.itemslugname} back={back} />
           })
           :<h3>No items in Orders</h3>
         :<>

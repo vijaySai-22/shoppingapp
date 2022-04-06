@@ -26,6 +26,8 @@ export default function Carttcard(props) {
       },[])
     const deleteItem =async ()=>{
         await deleteDoc(doc(db, `${id}cart`, `${props.slug}`));
+        alert("Removed!")
+        props.back()
     }
   return (
     <div>
