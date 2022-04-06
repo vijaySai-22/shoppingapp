@@ -23,7 +23,7 @@ export default function BuyandAddButtons(props) {
     // to check mobile in cart or not
     const [exist,setExist] = useState(false)
     async function check(){
-        const docRef = doc(db, `${id}cart`, `${props.mobileName}`);
+        const docRef = doc(db, `${id}cart`, `${props.slugName}`);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) setExist(true)
@@ -33,9 +33,9 @@ export default function BuyandAddButtons(props) {
     check()
     //to add cart
     const cart=async ()=>{
-        console.log(props.mobileName)
+        console.log(props.slugName)
         try{
-            await setDoc(doc(db, `${id}cart`,`${props.mobileName}`), {
+            await setDoc(doc(db, `${id}cart`,`${props.slugName}`), {
                 qty:1
             });
             setExist(true)
@@ -64,7 +64,7 @@ export default function BuyandAddButtons(props) {
         {   (userIn)?
                 (status)?
                 <div>
-                    <Button style={{backgroundColor:"#13f060",color:"black",margin:"10px"}}>Buy Now</Button>
+                    <Button style={{backgroundColor:"#13f060",color:"black",margin:"10px"}} to={`/buy/${props.slugName}`} as={Link}>Buy Now</Button>
                     {
                         (exist)?
                         <Button as={Link} to='/cart' >Go to Cart</Button>:

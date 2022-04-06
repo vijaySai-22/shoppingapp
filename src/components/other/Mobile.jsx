@@ -50,7 +50,7 @@ export default function Mobile() {
                 mobileData.specifications.map((e) => (
                   <div>
                     {e.specs.map((x) => {
-                      if (x.key === "Status") return(<BuyandAddButtons status={x.val} mobileName={name} />)
+                      if (x.key === "Status") return(<BuyandAddButtons status={x.val} slugName={name}  />)
                     })}
                   </div>
                 )):null
