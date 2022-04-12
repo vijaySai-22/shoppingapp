@@ -18,7 +18,7 @@ export default function Mobile() {
   return (
     <div>
       <Container style={{backgroundColor:"#f5f5f5"}}>
-        <h1>{mobileData.phone_name}</h1>
+        <h1>{mobileData.brand} {mobileData.phone_name}</h1>
         <Row>
             <Col md={6}>
               {
